@@ -2,10 +2,10 @@
 
 Projet de programmation linéaire avec Gurobi en Python.
 
-Implémentation du critère de Wald et du Min Max Regret
+Implémentation du critère de Wald et du Min Max Regret.
 
 ## Installations requises
-Les bibliothèques utilisés sont disponibles dans ``requirements.txt``.
+Les bibliothèques utilisées sont disponibles dans ``requirements.txt``.
 
 Pour les télécharger :
 
@@ -25,11 +25,11 @@ pip3 install -r requirements.txt
     ```
     python3 lib.py question_1 5 0 20
     ```
-    Pour donner des matrices particulières à ces fonctions, le faire dans ``main.py``
+    Pour donner des matrices particulières à ces fonctions, le faire dans ``main.py``.
 
 - ``perf.py``
 
-    Exécuter un test de performance sur une des fonctions de ``lib.py``
+    Exécuter un test de performance sur une des fonctions de ``lib.py``.
     ```
     python3 perf.py <nom fonction> <borne inf> <borne sup> <iterations par point> <taille limite> <pas>
     ```
@@ -45,5 +45,5 @@ pip3 install -r requirements.txt
 - ``question_5``: Minimise le plus grand regret
 
 
-Se référer au ``rendu.pdf`` pour la définition formelle de ces fonctions
+Se référer au ``rendu.pdf`` pour la définition formelle de ces fonctions.
 
