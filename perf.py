@@ -2,16 +2,16 @@
 import gurobipy as gp
 from gurobipy import GRB
 import numpy as np
-from typing import Tuple
 import logging
 import time
 from sys import argv, stdout
 from lib import *
     
 def perf_tests(fonction, lower: int = 0, upper: int = 20, average_iter: int = 10, size_lim: int = 100, step: int = 5):
-    """Calcul de performances pour la fonction ``question_5``
+    """Calcul de performances
 
     Args:
+        function : fonction à tester
         lower (int): borne inférieure des valeurs des utilités
         upper (int): borne supérieure des valeurs des utilités
         average_iter (int, optional): nombre d'itérations par instance. Vaut 10 par défaut.

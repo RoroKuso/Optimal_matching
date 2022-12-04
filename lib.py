@@ -2,13 +2,11 @@
 import gurobipy as gp
 from gurobipy import GRB
 import numpy as np
-from typing import Tuple
 import logging
-import time
 from sys import argv
 
 
-def question_1(N, V=None, lower=0, upper=15):
+def question_1(N: int, V=None, lower: int =0, upper:int =15):
     """
         Maximisation de la satifaction moyenne des agents. Retourne l'affectation obtenue.
         
@@ -19,7 +17,7 @@ def question_1(N, V=None, lower=0, upper=15):
             upper (int): borne supérieure si ``V`` non renseignée
     """
     
-    logging.info("-----------résolution question_1-----------")
+    logging.info(">------résolution question_1------<")
     
     if V is not None:
         U = V
@@ -31,6 +29,7 @@ def question_1(N, V=None, lower=0, upper=15):
     
     # Création du modèle
     m = gp.Model("question_1")
+    #m.Params.LogToConsole = 0
     
     # Ajout des variables
     X = m.addMVar((N,N), vtype=GRB.BINARY)
@@ -46,8 +45,8 @@ def question_1(N, V=None, lower=0, upper=15):
     m.optimize(callback=None)
     
     res = [X[i][j].X * U[i][j] for i in range(N) for j in range(N) if X[i][j].X > 0]
-    logging.info("affectation obtenue : " + str(res) + "valeur objectif = " + str(m.ObjVal))
-    logging.info("<------Fin appel question_1------>")
+    logging.info("affectation obtenue : " + str(res) + " valeur objectif = " + str(m.ObjVal))
+    logging.info("<------fin appel question_1------>")
     return res
 
 
@@ -74,6 +73,7 @@ def question_4_indicator(N: int, eps: float = 0.01, V=None, lower=0, upper=20):
 
     # Création du modèle
     m = gp.Model("question4")
+    
     X = np.array([[m.addVar(vtype=GRB.BINARY) for j in range(N)] for i in range(N)])
     Y = m.addVar(vtype = GRB.INTEGER)
     m.update()
@@ -98,7 +98,7 @@ def question_4_indicator(N: int, eps: float = 0.01, V=None, lower=0, upper=20):
     m.optimize()
     
     res = [X[i][j].X * U[i][j] for i in range(N) for j in range(N) if X[i][j].X > 0]
-    logging.info("affectation obtenue : " + str(res) + "valeur objectif = " + str(m.ObjVal))
+    logging.info("affectation obtenue : " + str(res) + " valeur objectif = " + str(m.ObjVal))
     logging.info("<------fin appel question_4_indicator------>")
     return res
     
@@ -151,16 +151,16 @@ def question_4(N, eps: float = 0.01, V=None, lower=0, upper=20):
     m.optimize()
     
     res = [X[i][j].X * U[i][j] for i in range(N) for j in range(N) if X[i][j].X > 0]
-    logging.info("affectation obtenue : " + str(res) + "valeur objectif = " + str(m.ObjVal))
+    logging.info("affectation obtenue : " + str(res) + " valeur objectif = " + str(m.ObjVal))
     logging.info("<------fin appel question_4------>")
     return res
 
-def question_5(N,lb=0,hb=20,V=None):
+def question_5(N,lower=0,upper=20,V=None):
     if V is not None:
         U = V
     else:
-        U = np.random.randint(lb,hb,size=(N,N))
-    logging.info(">---------résolution question_5---------<")
+        U = np.random.randint(lower,upper,size=(N,N))
+    logging.info(">------résolution question_5------<")
     logging.info("U matrix\n" + str(U.transpose()))
     
     # Création du modèle
@@ -185,8 +185,8 @@ def question_5(N,lb=0,hb=20,V=None):
     m.optimize()
     
     res = [X[i][j].X * U[i][j] for i in range(N) for j in range(N) if X[i][j].X > 0]
-    logging.info("    affectation obtenue : " + str(res) + " ObjVal = " + str(m.ObjVal))
-    logging.info("<---------fin appel question_5--------->")
+    logging.info("affectation obtenue : " + str(res) + " valeur objectif = " + str(m.ObjVal))
+    logging.info("<------fin appel question_5------>")
     return res
 
     
